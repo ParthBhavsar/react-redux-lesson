@@ -1,5 +1,7 @@
 const initialState = {
-    transactions: {}
+    transactions: [],
+    page: 1,
+    limit: 10,
 };
 
 const transactionReducer = (
@@ -7,8 +9,15 @@ const transactionReducer = (
     action
 ) => {
     switch (action.type) {
-        case "ADD_TRANSACTION":
-            return null
+        case "ADD_NEW_TRANSACTION": {
+            return {
+                ...state,
+                transactions: [
+                    ...state.transactions,
+                    action.payload
+                ]
+            }
+        }
         default:
             return state
     }

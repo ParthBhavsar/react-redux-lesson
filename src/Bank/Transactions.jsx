@@ -1,3 +1,4 @@
+import moment from 'moment'
 import React from 'react'
 import { useSelector } from 'react-redux'
 
@@ -7,14 +8,15 @@ const Transactions = () => {
   return (
     <>
       <h3>Transactions</h3>
-      {Object.values(transactions).map((transaction) => {
-        return (
-          <>
-            <p>name: {transaction.name}</p>
-            <p>amount: {transaction.amount}</p>
-          </>
-        )
-      })}
+      <ul>
+      {transactions.map((transaction) => {
+          return (
+            <li>
+              <span>type: {transaction.transactionType}<br/>amount: ${transaction.amount}<br/>time: {moment.unix(transaction.timestamp).format('ll')}</span>
+            </li>
+          )
+        })}
+      </ul>
     </>
 
   )
